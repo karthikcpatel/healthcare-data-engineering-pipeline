@@ -15,7 +15,11 @@ import os
 
 import requests
 import pandas as pd
-from snowflake_utils import get_connection, add_metadata, load_to_snowflake
+
+try:
+    from .snowflake_utils import get_connection, add_metadata, load_to_snowflake
+except ImportError:  # pragma: no cover
+    from snowflake_utils import get_connection, add_metadata, load_to_snowflake
 
 TABLE = "FAERS_DEMO"
 QUARTER = os.environ.get("FAERS_QUARTER", "2024q4")

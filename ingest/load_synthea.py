@@ -12,7 +12,11 @@ import argparse
 from pathlib import Path
 
 import pandas as pd
-from snowflake_utils import get_connection, add_metadata, load_to_snowflake
+
+try:
+    from .snowflake_utils import get_connection, add_metadata, load_to_snowflake
+except ImportError:  # pragma: no cover
+    from snowflake_utils import get_connection, add_metadata, load_to_snowflake
 
 PATIENTS_COLS = [
     "id", "birthdate", "deathdate", "ssn", "drivers", "passport",

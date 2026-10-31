@@ -10,9 +10,14 @@ Usage: python load_cms.py
 import os
 import sys
 from typing import BinaryIO, cast
+
 import requests
 import pandas as pd
-from snowflake_utils import get_connection, add_metadata, load_to_snowflake
+
+try:
+    from .snowflake_utils import get_connection, add_metadata, load_to_snowflake
+except ImportError:  # pragma: no cover
+    from snowflake_utils import get_connection, add_metadata, load_to_snowflake
 
 TABLE = "CMS_OPEN_PAYMENTS"
 DATASET_ID = os.environ.get("CMS_DATASET_ID", "").strip()

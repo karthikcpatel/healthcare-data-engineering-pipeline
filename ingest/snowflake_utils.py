@@ -6,6 +6,11 @@ import snowflake.connector
 from snowflake.connector.pandas_tools import write_pandas
 from dotenv import load_dotenv, find_dotenv
 
+try:
+    from . import _compat  # pragma: no cover
+except ImportError:  # pragma: no cover
+    _compat = None
+
 load_dotenv(find_dotenv())
 
 
